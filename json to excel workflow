@@ -1,0 +1,104 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c1616754-4dec-4b00-a8b5-d1cb5f75bf11",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        340,
+        0
+      ],
+      "webhookId": "c1616754-4dec-4b00-a8b5-d1cb5f75bf11"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "=body",
+        "options": {}
+      },
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        560,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toFile",
+        "fileFormat": "xlsx",
+        "options": {}
+      },
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        780,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "binary",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "content-disposition",
+                "value": "=attachment; filename=\"{{$node[\"Webhook\"].json[\"query\"][\"filename\"]? $node[\"Webhook\"].json[\"query\"][\"filename\"] : \"Export\"}}.xlsx\""
+              }
+            ]
+          }
+        }
+      },
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
