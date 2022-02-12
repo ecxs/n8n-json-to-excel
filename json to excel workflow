@@ -3,7 +3,7 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "c1616754-4dec-4b00-a8b5-d1cb5f75bf11",
+        "path": "=",
         "responseMode": "responseNode",
         "options": {}
       },
@@ -11,8 +11,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        340,
-        0
+        460,
+        300
       ],
       "webhookId": "c1616754-4dec-4b00-a8b5-d1cb5f75bf11"
     },
@@ -25,8 +25,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 1,
       "position": [
-        560,
-        0
+        680,
+        300
       ]
     },
     {
@@ -39,8 +39,8 @@
       "type": "n8n-nodes-base.spreadsheetFile",
       "typeVersion": 1,
       "position": [
-        780,
-        0
+        900,
+        300
       ]
     },
     {
@@ -61,8 +61,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
       "position": [
-        1020,
-        0
+        1140,
+        300
       ]
     }
   ],
